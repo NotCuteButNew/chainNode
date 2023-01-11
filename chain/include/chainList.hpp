@@ -34,13 +34,15 @@ chainList<T>::~chainList()
 {
     chainNode<T> *newHead = firstNode;
     chainNode<T> *post;
-    while (newHead->next != nullptr)
+    while (newHead != nullptr)
     {
         post = newHead->next;
+        newHead->next = nullptr;
+        delete newHead;
+        newHead = post;
     }
-    newHead->next = nullptr;
-    delete[] newHead;
-    newHead = post;
+    delete newHead;
+    delete post;
 }
 
 template <class T>
@@ -59,6 +61,8 @@ void chainList<T>::insert(int theIndex, T &theElement)
         throw "chainList::insert::theIndex must be between 0 and chaiList::size";
     else
     {
+        if (firstNode == nullptr)
+            firstNode = new chainNode<T>(theElement);
         chainNode<T> *pre = firstNode;
         for (int i = 0; !(i > theIndex); i++)
         {
@@ -84,7 +88,7 @@ void chainList<T>::erase(int theIndex)
         }
         chainNode<T> *targetNode = pre->next;
         pre->next = targetNode->next;
-        delete[] targetNode;
+        delete targetNode;
         size--;
     }
 }
@@ -92,6 +96,8 @@ void chainList<T>::erase(int theIndex)
 template <class T>
 void chainList<T>::push_back(T &theElement)
 {
+    if (firstNode == nullptr)
+        firstNode = new chainNode<T>(theElement);
     chainNode<T> *tailNode = firstNode;
     while (tailNode->next != nullptr)
     {
@@ -109,8 +115,8 @@ void chainList<T>::output(std::ostream &out) const
     chainNode<T> *currentNode = firstNode->next;
     while (currentNode != nullptr)
     {
-        currentNode = currentNode->next;
         out << currentNode->element << std::endl;
+        currentNode = currentNode->next;
     }
 }
 
