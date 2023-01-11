@@ -3,13 +3,14 @@
 
 #include "linearList.hpp"
 #include "chainNode.hpp"
+#include <ostream>
 
 template <class T>
-class chainList : public linearList
+class chainList : public linearList<T>
 {
 private:
     int size;
-    chainNode<T> firstNode;
+    chainNode<T> *firstNode;
 
 public:
     chainList();
@@ -18,23 +19,24 @@ public:
     void insert(int theIndex, T &theElement);
     void erase(int theIndex);
     void push_back(T &theElement);
-    void output(std::ostream out) const;
+    void output(std::ostream &out) const;
 };
 
 template <class T>
 chainList<T>::chainList()
 {
-    firstNode->next = nullptr;
-    int size = 1;
+    firstNode = nullptr;
+    size = 1;
 }
 
 template <class T>
 chainList<T>::~chainList()
 {
     chainNode<T> *newHead = firstNode;
+    chainNode<T> *post;
     while (newHead->next != nullptr)
     {
-        chainNode<T> *post = newHead->next;
+        post = newHead->next;
     }
     newHead->next = nullptr;
     delete[] newHead;
@@ -80,7 +82,7 @@ void chainList<T>::erase(int theIndex)
         {
             pre = pre->next;
         }
-        chainNode<T> *targetNode = *pre->next;
+        chainNode<T> *targetNode = pre->next;
         pre->next = targetNode->next;
         delete[] targetNode;
         size--;
@@ -102,7 +104,7 @@ void chainList<T>::push_back(T &theElement)
 }
 
 template <class T>
-void chainList<T>::output(std::ostream out) const
+void chainList<T>::output(std::ostream &out) const
 {
     chainNode<T> *currentNode = firstNode->next;
     while (currentNode != nullptr)
@@ -113,7 +115,7 @@ void chainList<T>::output(std::ostream out) const
 }
 
 template <class T>
-std::ostream operator<<(std::ostream out, const chainList<T> &x)
+std::ostream &operator<<(std::ostream &out, const chainList<T> &x)
 {
     x.output(out);
     return out;
