@@ -10,9 +10,9 @@ struct student
     int score;
 };
 
-std::ostream &operator<<(std::ostream& out, const student &x)
+std::ostream &operator<<(std::ostream &out, const student &x)
 {
-    out << x.name << " " << x.score << std::endl;
+    out << x.name << " " << x.score;
     return out;
 }
 #endif
