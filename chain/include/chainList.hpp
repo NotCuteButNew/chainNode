@@ -31,6 +31,14 @@ chainList<T>::chainList()
 template <class T>
 chainList<T>::~chainList()
 {
+    chainNode<T> *newHead = firstNode;
+    while (newHead->next != nullptr)
+    {
+        chainNode<T> *post = newHead->next;
+    }
+    newHead->next = nullptr;
+    delete[] newHead;
+    newHead = post;
 }
 
 template <class T>
