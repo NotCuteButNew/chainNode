@@ -2,6 +2,7 @@
 #define student_hpp
 
 #include <string>
+#include <ostream>
 
 struct student
 {
@@ -9,4 +10,9 @@ struct student
     int score;
 };
 
+std::ostream &operator<<(std::ostream out, const student &x)
+{
+    out << x.name << " " << x.score << std::endl;
+    return out;
+}
 #endif
