@@ -5,9 +5,8 @@
 template <class T>
 class linearList
 {
-private:
 public:
-    virtual ~linearList();
+    virtual ~linearList(){};
     virtual bool empty() const = 0;
     virtual void insert(int theIndex, T &theElement) = 0;
     virtual void erase(int theIndex) = 0;
