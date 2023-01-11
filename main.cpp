@@ -1,26 +1,25 @@
 #include <iostream>
 #include "chainNode.hpp"
+#include "chainList.hpp"
 
 int main(int argc, char **argv)
 {
     if (argc > 1)
     {
-        int *nums = new int[argc];
-        for (int i = 1; i < argc; i++)
+        student s;
+        chainList<student> list;
+        int *scores = new int[argc];
+        for (int i = 1; i < argc; i += 2)
         {
-            nums[i - 1] = std::stoi(argv[i]);
+            scores[i/2] = std::stoi(argv[i + 1]);
         }
-        chainNode<int> *headNode = new chainNode<int>(nums[0]);
-        for (int i = 1; i < argc - 1; i++)
+        for (int i = 1; i < argc; i += 2)
         {
-            headNode = new chainNode<int>(nums[i], headNode);
+            s.name = argv[i];
+            s.score = scores[i / 2];
+            list.push_back(s);
         }
-        while (headNode->next != nullptr)
-        {
-            std::cout << headNode->element << " -> ";
-            headNode = headNode->next;
-        }
-        std::cout << headNode->element;
+        std::cout << list;
     }
     return 0;
 }
