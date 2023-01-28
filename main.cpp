@@ -11,7 +11,7 @@ int main(int argc, char **argv)
         int *scores = new int[argc];
         for (int i = 1; i < argc; i += 2)
         {
-            scores[i/2] = std::stoi(argv[i + 1]);
+            scores[i / 2] = std::stoi(argv[i + 1]);
         }
         for (int i = 1; i < argc; i += 2)
         {
@@ -19,6 +19,9 @@ int main(int argc, char **argv)
             s.score = scores[i / 2];
             list.push_back(s);
         }
+        s.name = "abc";
+        s.score = 2;
+        list.insert(1, s);
         std::cout << list;
     }
     return 0;
