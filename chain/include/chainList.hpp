@@ -64,11 +64,12 @@ void chainList<T>::insert(int theIndex, T &theElement)
         if (firstNode == nullptr)
             firstNode = new chainNode<T>(theElement);
         chainNode<T> *pre = firstNode;
-        for (int i = 0; !(i > theIndex); i++)
+        for (int i = 0; i < theIndex; i++)
         {
             pre = pre->next;
         }
         chainNode<T> *newNode = new chainNode<T>(theElement, pre->next);
+
         pre->next = newNode;
         size++;
     }
