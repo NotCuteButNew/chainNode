@@ -100,7 +100,7 @@ void chainList<T>::erase(int theIndex)
         {
             preNode = preNode->next;
         }
-        chainNode<T> *targetNode = preNode;
+        chainNode<T> *targetNode = preNode->next;
         preNode->next = targetNode->next;
         delete targetNode;
         size--;
