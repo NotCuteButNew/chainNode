@@ -84,7 +84,7 @@ void chainList<T>::insert(int theIndex, T &theElement)
         }
         chainNode<T> *newNode = new chainNode<T>(theElement, preNode->next);
         preNode->next = newNode;
-        size++
+        size++;
     }
 }
 
