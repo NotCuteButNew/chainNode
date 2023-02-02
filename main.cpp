@@ -16,6 +16,11 @@ int main(int argc, char **argv)
             list.push_back(s);
         }
         std::cout << list;
+        std::cout << "****test insert****" << std::endl;
+        s.name = "D";
+        s.score = 4;
+        list.insert(2, s);
+        std::cout << list;
     }
     return 0;
 }
