@@ -10,7 +10,13 @@ int main(int argc, char **argv)
         student s;
         chainList<student> list;
         for (int i = 1; i < argc; i += 2)
+        student s;
+        chainList<student> list;
+        for (int i = 1; i < argc; i += 2)
         {
+            s.name = argv[i];
+            s.score = std::stoi(argv[i + 1]);
+            list.push_back(s);
             s.name = argv[i];
             s.score = std::stoi(argv[i + 1]);
             list.push_back(s);
