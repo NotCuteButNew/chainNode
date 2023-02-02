@@ -21,6 +21,9 @@ int main(int argc, char **argv)
         s.score = 4;
         list.insert(2, s);
         std::cout << list;
+        std::cout << "****test erase****" << std::endl;
+        list.erase(3);
+        std::cout << list;
     }
     return 0;
 }
