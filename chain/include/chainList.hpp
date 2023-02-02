@@ -26,7 +26,7 @@ template <class T>
 chainList<T>::chainList()
 {
     firstNode = nullptr;
-    size = 1;
+    size = 0;
 }
 
 template <class T>
@@ -64,7 +64,7 @@ void chainList<T>::insert(int theIndex, T &theElement)
         if (firstNode == nullptr)
             firstNode = new chainNode<T>(theElement);
         chainNode<T> *pre = firstNode;
-        for (int i = 0; i < theIndex; i++)
+        for (int i = 0; i < theIndex-1; i++)
         {
             pre = pre->next;
         }
