@@ -15,6 +15,8 @@ private:
 public:
     chainList();
     ~chainList();
+    int get_size();
+    chainNode<T> get_head();
     bool empty() const;
     void insert(int theIndex, T &theElement);
     void erase(int theIndex);
@@ -46,6 +48,18 @@ chainList<T>::~chainList()
 }
 
 template <class T>
+inline int chainList<T>::get_size()
+{
+    return size;
+}
+
+template <class T>
+inline chainNode<T> chainList<T>::get_head()
+{
+    return firstNode;
+}
+
+template <class T>
 bool chainList<T>::empty() const
 {
     if (firstNode->next == nullptr)
@@ -64,7 +78,7 @@ void chainList<T>::insert(int theIndex, T &theElement)
         if (firstNode == nullptr)
             firstNode = new chainNode<T>(theElement);
         chainNode<T> *pre = firstNode;
-        for (int i = 0; i < theIndex-1; i++)
+        for (int i = 0; i < theIndex - 1; i++)
         {
             pre = pre->next;
         }
