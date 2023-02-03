@@ -1,6 +1,7 @@
 #include <iostream>
 #include "chainNode.hpp"
 #include "chainList.hpp"
+#include "student.hpp"
 
 int main(int argc, char **argv)
 {
@@ -19,6 +20,10 @@ int main(int argc, char **argv)
         s.score = 2;
         list.insert(1, s);
         std::cout << list;
+        student a;
+        a.name = "d";
+        a.score = 2;
+        std::cout << "test:\t" << (a != s);
     }
     return 0;
 }
