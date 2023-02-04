@@ -10,6 +10,7 @@ class chainList
 private:
     int size;
     chainNode<T> *headNode;
+    chainNode<T> *tailNode;
 
 public:
     chainList();
@@ -20,12 +21,14 @@ public:
     void insert(int theIndex, T &theElement);
     void erase(int theIndex);
     void output(std::ostream &out);
+    void bin_sort(int max_score);
 };
 
 template <class T>
 chainList<T>::chainList()
 {
     headNode = nullptr;
+    tailNode = headNode;
     size = 0;
 }
 
@@ -60,13 +63,12 @@ template <class T>
 void chainList<T>::push_back(T &theElement)
 {
     if (headNode == nullptr)
-        headNode = new chainNode<T>(theElement);
-    chainNode<T> *tailNode = headNode;
-    while (tailNode->next != nullptr)
     {
-        tailNode = tailNode->next;
+        headNode = new chainNode<T>(theElement);
+        tailNode = headNode;
     }
     tailNode->next = new chainNode<T>(theElement);
+    tailNode = tailNode->next;
     size++;
 }
 
@@ -102,6 +104,11 @@ void chainList<T>::erase(int theIndex)
         }
         chainNode<T> *targetNode = preNode->next;
         preNode->next = targetNode->next;
+        if (tailNode == targetNode)
+        {
+            tailNode = preNode;
+            tailNode->next = nullptr;
+        }
         delete targetNode;
         size--;
     }
@@ -116,6 +123,44 @@ void chainList<T>::output(std::ostream &out)
         out << ptr->element << std::endl;
         ptr = ptr->next;
     }
+}
+
+template <class T>
+void chainList<T>::bin_sort(int max_score)
+{
+    chainNode<T> **bottom = new chainNode<T> *[max_score + 1];
+    chainNode<T> **top = new chainNode<T> *[max_score + 1];
+    for (int i = 0; !(i > max_score); i++)
+    {
+        bottom[i] = nullptr;
+        top[i] = bottom[i];
+    }
+    for (chainNode<T> *ptr = headNode->next; ptr != tailNode->next && ptr != nullptr; ptr = ptr->next)
+    {
+        int theBin = int(ptr->element);
+        if (bottom[theBin] == nullptr)
+        {
+            bottom[theBin] = ptr;
+            top[theBin] = bottom[theBin];
+        }
+        else
+        {
+            top[theBin]->next = ptr;
+            top[theBin] = top[theBin]->next;
+        }
+    }
+    tailNode = headNode;
+    for (int i = 0; !(i > max_score); i++)
+    {
+        if (bottom[i] != nullptr)
+        {
+            tailNode->next = bottom[i];
+            tailNode = top[i];
+        }
+    }
+    tailNode->next = nullptr;
+    delete[] bottom;
+    delete[] top;
 }
 
 template <class T>
