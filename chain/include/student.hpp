@@ -12,7 +12,7 @@ struct student
     {
         return (score != x.score);
     }
-    int operator->() const
+    operator int() const
     {
         return score;
     }
