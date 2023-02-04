@@ -8,6 +8,10 @@ struct student
 {
     std::string name;
     int score;
+    operator int() const
+    {
+        return score;
+    }
 };
 
 std::ostream &operator<<(std::ostream &out, student &x)
