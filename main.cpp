@@ -17,13 +17,16 @@ int main(int argc, char **argv)
         }
         std::cout << list;
         s.name = "abc";
-        s.score = 2;
+        s.score = 5;
         list.insert(1, s);
         std::cout << list;
         student a;
         a.name = "d";
         a.score = 2;
-        std::cout << "test:\t" << (a != s);
+        std::cout << "test:\t" << (a != s) << std::endl;
+        std::cout << "test:\t" << int(list.get_head().element) << std::endl;
+        list.bin_sort(5);
+        std::cout << list;
     }
     return 0;
 }
