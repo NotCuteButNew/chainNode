@@ -1,7 +1,6 @@
 ﻿#ifndef CHAINNODE_HPP
 #define CHAINNODE_HPP
 
-#include "student.hpp"
 
 template <class T>
 struct chainNode
