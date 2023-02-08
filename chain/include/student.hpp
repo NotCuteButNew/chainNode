@@ -14,7 +14,7 @@ struct student
     }
 };
 
-std::ostream &operator<<(std::ostream &out, student &x)
+inline std::ostream &operator<<(std::ostream &out, student &x)
 {
     out << x.name << "\t" << x.score;
     return out;
